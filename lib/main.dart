@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Provider/Album_provider.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'LoginAlbum/AlbumList_L.dart';
 import 'LoginPage.dart';
 import 'Provider/Login_provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider<Login_provider>(
-      create: (context) => Login_provider(),
-      child: MaterialApp(home: MyApp())));
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<Login_provider>(
+        create: (context) => Login_provider(),
+      ),
+      ChangeNotifierProvider<Album_provider>(
+        create: (context) => Album_provider(),
+      ),
+    ],
+    child: MaterialApp(home: MyApp()),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,8 +35,9 @@ class MyApp extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
-          return const LinearProgressIndicator(
-            color: Colors.amber,
+          return const SpinKitRotatingCircle(
+            color: Colors.red,
+            size: 50.0,
           );
         }));
   }

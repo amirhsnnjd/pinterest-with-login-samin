@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_1/Albums/AlbumList.dart';
 import 'package:flutter_application_1/LoginAlbum/AlbumList_L.dart';
 import 'package:provider/provider.dart';
+import 'HomePage.dart';
 import 'Provider/Album_provider.dart';
 
 ThemeData _darkTheme = ThemeData(
@@ -108,7 +109,16 @@ class LoginPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     child: ElevatedButton(
                         onPressed: () {
-                          if (_formkey.currentState!.validate()) {}
+                          if (_formkey.currentState!.validate()) {
+                            ChangeNotifierProvider<Album_provider>(
+                                create: (context) => Album_provider(),
+                                child: HomePage());
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()),
+                            );
+                          }
                         },
                         child: Text(
                           "Log in",
