@@ -46,7 +46,7 @@ class LoginPage extends StatelessWidget {
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Enter your username',
-                        errorStyle: TextStyle(color: Colors.white),
+                        errorStyle: TextStyle(color: Colors.red, fontSize: 16),
                         hintStyle: TextStyle(
                             fontSize: 20,
                             color: Color.fromARGB(255, 163, 157, 157))),
@@ -80,7 +80,7 @@ class LoginPage extends StatelessWidget {
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Enter your Password',
-                        errorStyle: TextStyle(color: Colors.white),
+                        errorStyle: TextStyle(color: Colors.red, fontSize: 16),
                         hintStyle: TextStyle(
                             fontSize: 20,
                             color: Color.fromARGB(255, 163, 157, 157))),
@@ -88,7 +88,8 @@ class LoginPage extends StatelessWidget {
                       int p = 0;
                       for (int i = 0; i < snapshot.data!.albums.length; i++) {
                         if (user == snapshot.data!.albums[i].username) {
-                          if (value == snapshot.data!.albums[i].id) p = 1;
+                          if (value == snapshot.data!.albums[i].id.toString())
+                            p = 1;
                         }
                       }
                       if (p == 0)
@@ -107,9 +108,7 @@ class LoginPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     child: ElevatedButton(
                         onPressed: () {
-                          if (_formkey.currentState!.validate()) {
-                            print("object");
-                          }
+                          if (_formkey.currentState!.validate()) {}
                         },
                         child: Text(
                           "Log in",
