@@ -6,6 +6,7 @@ import 'package:flutter_application_1/LoginAlbum/AlbumList_L.dart';
 import 'package:provider/provider.dart';
 import 'HomePage.dart';
 import 'Provider/Album_provider.dart';
+import 'Provider/Shared.dart';
 
 ThemeData _darkTheme = ThemeData(
     brightness: Brightness.dark,
@@ -110,9 +111,6 @@ class LoginPage extends StatelessWidget {
                     child: ElevatedButton(
                         onPressed: () {
                           if (_formkey.currentState!.validate()) {
-                            ChangeNotifierProvider<Album_provider>(
-                                create: (context) => Album_provider(),
-                                child: HomePage());
                             Navigator.push(
                               context,
                               MaterialPageRoute(
